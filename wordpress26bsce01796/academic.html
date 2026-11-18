@@ -1,0 +1,673 @@
+
+<?php
+/*
+Template Name: Stella Maris Academics
+*/
+get_header();
+?>
+
+<style>
+/* GENERAL STYLING */
+.academics-main {
+    font-family: Arial, sans-serif;
+    color: #26372e;
+    width: 100%;
+    overflow: hidden;
+}
+
+.academics-main * {
+    box-sizing: border-box;
+}
+
+.academics-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-eyebrow {
+    color: #b58a35;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* HERO SECTION */
+.academics-hero {
+    background:
+        linear-gradient(rgba(12,55,36,.88), rgba(23,75,53,.85)),
+        url('<?php echo esc_url(get_theme_file_uri('/images/img1.jpg')); ?>');
+
+    background-size: cover;
+    background-position: center;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    padding: 70px 5%;
+    color: white;
+}
+
+.academics-hero-content {
+    max-width: 800px;
+}
+
+.academics-hero .section-eyebrow {
+    color: #e1bd6c;
+}
+
+.academics-hero h1 {
+    color: white;
+    font-size: clamp(35px, 5vw, 55px);
+    line-height: 1.2;
+    margin: 18px 0;
+}
+
+.academics-hero p {
+    color: #f0f3ef;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* COURSES SECTION */
+.academics-features {
+    padding: 85px 0;
+}
+
+.academics-section-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 45px;
+}
+
+.academics-section-heading h2 {
+    color: #174b35;
+    font-size: 35px;
+}
+
+.academics-section-heading p {
+    color: #777;
+    line-height: 1.8;
+}
+
+.academics-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #e7ece7;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    transition: .3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-7px);
+    border-color: #b58a35;
+    box-shadow: 0 10px 25px rgba(0,0,0,.10);
+}
+
+.feature-number {
+    width: 48px;
+    height: 48px;
+    background: #f5f0e4;
+    color: #a47b2c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    color: #174b35;
+    font-size: 19px;
+    line-height: 1.5;
+}
+
+.feature-card p {
+    color: #777;
+    line-height: 1.8;
+}
+
+/* LEARNING JOURNEY */
+.journey-section {
+    background: #f5f7f3;
+    padding: 85px 0;
+}
+
+.journey-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: auto;
+}
+
+.journey-heading h2 {
+    color: #174b35;
+    font-size: 35px;
+}
+
+.journey-heading p {
+    color: #777;
+    line-height: 1.8;
+}
+
+.journey-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.journey-step {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    border-bottom: 4px solid #b58a35;
+}
+
+.journey-step span {
+    font-size: 35px;
+    color: #b58a35;
+    font-weight: bold;
+}
+
+.journey-step h3 {
+    color: #174b35;
+    font-size: 21px;
+}
+
+.journey-step p {
+    color: #777;
+    line-height: 1.8;
+}
+
+/* INFORMATION SECTION */
+.academics-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    padding: 85px 0;
+    align-items: start;
+}
+
+.support-panel {
+    background: #174b35;
+    padding: 40px;
+    border-radius: 12px;
+    color: white;
+}
+
+.support-panel .section-eyebrow {
+    color: #e1bd6c;
+}
+
+.support-panel h2 {
+    color: white;
+    font-size: 32px;
+}
+
+.support-panel p {
+    color: #e2e9e3;
+    line-height: 1.8;
+}
+
+.academics-cta {
+    display: inline-block;
+    background: #b58a35;
+    color: white !important;
+    padding: 15px 25px;
+    border-radius: 5px;
+    text-decoration: none !important;
+    margin-top: 20px;
+    transition: .3s;
+}
+
+.academics-cta:hover {
+    background: #d0a64d;
+}
+
+/* FAQ */
+.academics-faq h2 {
+    color: #174b35;
+    font-size: 32px;
+}
+
+.academics-faq details {
+    border-bottom: 1px solid #ddd;
+    padding: 18px 0;
+}
+
+.academics-faq summary {
+    color: #174b35;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.academics-faq details p {
+    color: #777;
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.academics-faq a {
+    color: #174b35;
+    font-weight: bold;
+}
+
+/* BOTTOM SECTION */
+.academics-bottom {
+    background: #f5f0e4;
+    padding: 50px 30px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 85px;
+}
+
+.academics-bottom h2 {
+    color: #174b35;
+    font-size: 30px;
+}
+
+.academics-bottom p {
+    color: #666;
+    line-height: 1.8;
+}
+
+/* FOOTER */
+.site-footer {
+    background: #123d2b;
+    color: white;
+    padding: 55px 5%;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 35px;
+}
+
+.site-footer h3,
+.site-footer h4 {
+    color: white;
+}
+
+.site-footer p,
+.site-footer li {
+    color: #ddd;
+    line-height: 1.9;
+}
+
+.site-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.site-footer a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    color: #d5b15b;
+}
+
+.footer-bottom {
+    background: #0c2d20;
+    text-align: center;
+    color: white;
+    padding: 18px;
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 900px) {
+    .academics-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .journey-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .academics-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 550px) {
+    .academics-container {
+        width: 92%;
+    }
+
+    .academics-hero {
+        min-height: 350px;
+        padding: 50px 6%;
+    }
+
+    .academics-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .support-panel {
+        padding: 25px;
+    }
+}
+</style>
+
+<main class="academics-main">
+
+    <!-- HERO SECTION -->
+    <section class="academics-hero">
+        <div class="academics-hero-content">
+
+            <p class="section-eyebrow">LEARN BY DOING</p>
+
+            <h1 id="academics-title">
+                Skills for today. Confidence for life.
+            </h1>
+
+            <p>
+                At the college, learners build practical skills,
+                grow in confidence, and prepare for a more
+                self-reliant future.
+            </p>
+
+        </div>
+    </section>
+
+    <div class="academics-container">
+
+        <!-- COURSES -->
+        <section class="academics-features">
+
+            <div class="academics-section-heading">
+                <p class="section-eyebrow">OUR COURSES</p>
+
+                <h2>Discover what you can learn.</h2>
+
+                <p>
+                    Explore the learning areas and practical
+                    skills offered at our college.
+                </p>
+            </div>
+
+            <div class="academics-feature-grid">
+
+                <?php
+                $courses = array(
+                    array(
+                        'title' => 'HOTEL MANAGEMENT',
+                        'description' => 'Develop practical skills for a future in hospitality and hotel services.'
+                    ),
+                    array(
+                        'title' => 'TAILORING & GARMENT MAKING',
+                        'description' => 'Explore garment construction, creative design, and professional tailoring.'
+                    ),
+                    array(
+                        'title' => 'SECRETARIAL STUDIES',
+                        'description' => 'Build communication, administration, and office-support skills.'
+                    ),
+                    array(
+                        'title' => 'BAKING',
+                        'description' => 'Learn practical baking and develop creativity in food preparation.'
+                    ),
+                    array(
+                        'title' => 'COMPUTER SKILLS',
+                        'description' => 'Grow your confidence using computers for learning and work.'
+                    ),
+                    array(
+                        'title' => 'LEARN BY DOING',
+                        'description' => 'Connect useful knowledge with hands-on practice and supportive guidance.'
+                    )
+                );
+
+                $number = 1;
+
+                foreach ($courses as $course) :
+                ?>
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            <?php echo esc_html(sprintf('%02d', $number)); ?>
+                        </div>
+
+                        <h3>
+                            <?php echo esc_html($course['title']); ?>
+                        </h3>
+
+                        <p>
+                            <?php echo esc_html($course['description']); ?>
+                        </p>
+
+                    </article>
+
+                <?php
+                    $number++;
+                endforeach;
+                ?>
+
+            </div>
+        </section>
+
+        <!-- LEARNING JOURNEY -->
+        <section class="journey-section">
+
+            <div class="journey-heading">
+
+                <p class="section-eyebrow">
+                    THE LEARNING EXPERIENCE
+                </p>
+
+                <h2>
+                    A path from learning to independence
+                </h2>
+
+                <p>
+                    Every learner grows at their own pace.
+                    Our school values practical ability,
+                    supportive relationships, and the
+                    confidence to keep moving forward.
+                </p>
+
+            </div>
+
+            <div class="journey-steps">
+
+                <article class="journey-step">
+                    <span>01</span>
+                    <h3>Build understanding</h3>
+                    <p>
+                        Start with knowledge and guidance that
+                        help make new ideas easier to understand.
+                    </p>
+                </article>
+
+                <article class="journey-step">
+                    <span>02</span>
+                    <h3>Learn through practice</h3>
+                    <p>
+                        Put learning into action and grow
+                        confidence by developing practical skills.
+                    </p>
+                </article>
+
+                <article class="journey-step">
+                    <span>03</span>
+                    <h3>Prepare for what's next</h3>
+                    <p>
+                        Carry your skills, teamwork, and
+                        self-belief into future opportunities.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- SUPPORT AND FAQ -->
+        <section class="academics-info">
+
+            <div class="support-panel">
+
+                <p class="section-eyebrow">HERE TO HELP</p>
+
+                <h2>
+                    Get the right information before you apply.
+                </h2>
+
+                <p>
+                    Choosing a course is an important step.
+                    The school can help you find out which
+                    programmes are available and what you
+                    need to know before enrolling.
+                </p>
+
+                <a class="academics-cta"
+                   href="<?php echo esc_url(home_url('/contact-us/')); ?>">
+                    Talk to the school →
+                </a>
+
+            </div>
+
+            <div class="academics-faq">
+
+                <p class="section-eyebrow">QUICK QUESTIONS</p>
+
+                <h2>Planning your studies?</h2>
+
+                <details>
+                    <summary>Which courses are available?</summary>
+                    <p>
+                        <a href="<?php echo esc_url(home_url('/contact-us/')); ?>">
+                            Contact the school
+                        </a>
+                        for the current programme list.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>What are the entry requirements?</summary>
+                    <p>
+                        Ask the school about current entry
+                        requirements and the documents to
+                        bring when applying.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>How long does a course take?</summary>
+                    <p>
+                        Study length depends on the programme.
+                        Contact the school to confirm the
+                        duration of the course you are interested in.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>How do I take the next step?</summary>
+                    <p>
+                        Get in touch with the school to discuss
+                        available courses, application steps,
+                        and when to visit.
+                    </p>
+                </details>
+
+            </div>
+
+        </section>
+
+        <!-- FINAL CONTACT SECTION -->
+        <section class="academics-bottom">
+
+            <p class="section-eyebrow">
+                YOUR FUTURE STARTS HERE
+            </p>
+
+            <h2>Ready to take the next step?</h2>
+
+            <p>
+                Contact the school to learn more about
+                available courses and admission.
+            </p>
+
+            <a class="academics-cta"
+               href="<?php echo esc_url(home_url('/contact-us/')); ?>">
+                Contact the school →
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+            <h3>STELLA MARIS COLLEGE NSUUBE</h3>
+            <p>
+                Discipline. Knowledge. A brighter future.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>QUICK LINKS</h4>
+            <ul>
+                <li><a href="<?php echo esc_url(home_url('/')); ?>">HOME</a></li>
+                <li><a href="<?php echo esc_url(home_url('/about-us/')); ?>">ABOUT US</a></li>
+                <li><a href="<?php echo esc_url(home_url('/academics/')); ?>">ACADEMICS</a></li>
+                <li><a href="<?php echo esc_url(home_url('/gallery/')); ?>">GALLERY</a></li>
+                <li><a href="<?php echo esc_url(home_url('/contact-us/')); ?>">CONTACT US</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>CONTACT US</h4>
+            <ul>
+                <li>Mulagi</li>
+                <li>info@stellamariscollege.ug</li>
+                <li>Mon - Fri: 7:30am - 5:30pm</li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h4>FOLLOW US</h4>
+            <ul>
+                <li>Facebook</li>
+                <li>YouTube</li>
+                <li>TikTok</li>
+            </ul>
+        </div>
+
+    </div>
+
+</footer>
+
+<footer class="footer-bottom">
+    <p>
+        &copy; <?php echo esc_html(wp_date('Y')); ?>
+        Stella Maris College Nsuube. Educate a girl child.
+    </p>
+</footer>
+
+<?php get_footer(); ?>

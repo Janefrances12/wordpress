@@ -1,0 +1,619 @@
+
+<?php
+/*
+Template Name: Stella Maris College Gallery
+*/
+get_header();
+?>
+
+<style>
+/* GENERAL STYLING */
+.gallery-main {
+    font-family: Arial, sans-serif;
+    color: #26372e;
+    width: 100%;
+    overflow: hidden;
+}
+
+.gallery-main * {
+    box-sizing: border-box;
+}
+
+.gallery-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-eyebrow {
+    color: #b58a35;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.gallery-main h1,
+.gallery-main h2,
+.gallery-main h3 {
+    color: #174b35;
+}
+
+/* PAGE HEADING */
+.gallery-heading {
+    text-align: center;
+    padding: 75px 20px;
+    max-width: 850px;
+    margin: auto;
+}
+
+.gallery-heading h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    margin: 15px 0;
+}
+
+.gallery-heading p {
+    line-height: 1.8;
+    color: #666;
+}
+
+/* FEATURE SECTION */
+.gallery-showcase {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 30px 0 90px;
+}
+
+.gallery-feature {
+    margin: 0;
+}
+
+.gallery-feature img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.gallery-story h2 {
+    font-size: 34px;
+}
+
+.gallery-story p {
+    line-height: 1.9;
+    color: #666;
+}
+
+.gallery-values {
+    list-style: none;
+    padding: 0;
+}
+
+.gallery-values li {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.gallery-values span {
+    color: #b58a35;
+    margin-right: 12px;
+}
+
+.gallery-button {
+    display: inline-block;
+    background: #174b35;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 15px 25px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: .3s;
+}
+
+.gallery-button:hover {
+    background: #b58a35;
+    color: white !important;
+}
+
+/* ACTIVITIES */
+.gallery-activities {
+    padding: 70px 0;
+    background: #f7f8f4;
+}
+
+.gallery-activities-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.gallery-activities-heading h2 {
+    font-size: 34px;
+}
+
+.gallery-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.gallery-activity-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    transition: transform .3s;
+}
+
+.gallery-activity-card:hover {
+    transform: translateY(-7px);
+}
+
+.gallery-activity-photo {
+    overflow: hidden;
+}
+
+.gallery-activity-photo img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s;
+    cursor: pointer;
+}
+
+.gallery-activity-card:hover img {
+    transform: scale(1.06);
+}
+
+.gallery-activity-card figcaption {
+    padding: 20px;
+}
+
+.gallery-activity-card h3 {
+    font-size: 19px;
+}
+
+.gallery-activity-card p {
+    color: #777;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* CONTACT SECTION */
+.gallery-note {
+    margin: 80px auto;
+    padding: 40px;
+    background: #f2f5ef;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.gallery-note h2 {
+    font-size: 28px;
+}
+
+.gallery-note p {
+    color: #666;
+    line-height: 1.7;
+}
+
+/* FOOTER */
+.stella-gallery-footer {
+    background: #123d2b;
+    color: white;
+    padding: 55px 5%;
+}
+
+.stella-footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 35px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.stella-gallery-footer h3,
+.stella-gallery-footer h4 {
+    color: #fff;
+}
+
+.stella-gallery-footer p,
+.stella-gallery-footer li {
+    color: #ddd;
+    line-height: 1.9;
+}
+
+.stella-gallery-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.stella-gallery-footer a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.stella-gallery-footer a:hover {
+    color: #d5b15b;
+}
+
+.stella-footer-bottom {
+    background: #0c2d20;
+    text-align: center;
+    padding: 18px;
+    color: white;
+}
+
+/* IMAGE LIGHTBOX */
+.gallery-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999999;
+    inset: 0;
+    background: rgba(0,0,0,.94);
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.gallery-lightbox.active {
+    display: flex;
+}
+
+.gallery-lightbox img {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.gallery-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 900px) {
+    .gallery-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-activity-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stella-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 550px) {
+    .gallery-container {
+        width: 92%;
+    }
+
+    .gallery-heading {
+        padding: 50px 15px;
+    }
+
+    .gallery-feature img {
+        height: 300px;
+    }
+
+    .gallery-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-note {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+    }
+
+    .stella-footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<main class="gallery-main">
+
+    <!-- GALLERY HEADING -->
+    <section class="gallery-heading">
+        <p class="section-eyebrow">LIFE AT MULAGI</p>
+
+        <h1>A glimpse of learning and community.</h1>
+
+        <p>
+            Get to know our school through the people at its heart.
+            Discover learner life, practical training and the
+            activities that make Stella Maris College special.
+        </p>
+    </section>
+
+    <div class="gallery-container">
+
+        <!-- FEATURE SECTION -->
+        <section class="gallery-showcase">
+
+            <figure class="gallery-feature">
+                <img
+                    src="<?php echo esc_url(get_theme_file_uri('/images/img1.jpg')); ?>"
+                    alt="Students standing together in a school setting">
+            </figure>
+
+            <div class="gallery-story">
+
+                <p class="section-eyebrow">
+                    OUR SCHOOL COMMUNITY
+                </p>
+
+                <h2>Every learner has a place to grow.</h2>
+
+                <p>
+                    At Stella Maris College Nsuube, education and
+                    practical skills go hand in hand. We value a
+                    supportive environment where learners build
+                    confidence, work together and prepare for
+                    a self-reliant future.
+                </p>
+
+                <ul class="gallery-values">
+                    <li><span>01</span> Practical learning</li>
+                    <li><span>02</span> Confidence and teamwork</li>
+                    <li><span>03</span> Skills for the future</li>
+                </ul>
+
+                <a class="gallery-button"
+                   href="<?php echo esc_url(home_url('/academics/')); ?>">
+                    Explore our academics →
+                </a>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- STUDENT ACTIVITIES -->
+    <section class="gallery-activities">
+
+        <div class="gallery-container">
+
+            <div class="gallery-activities-heading">
+
+                <p class="section-eyebrow">
+                    LEARNING IN ACTION
+                </p>
+
+                <h2>See our students build practical skills.</h2>
+
+                <p>
+                    Explore the practical skills students develop
+                    through hands-on learning.
+                </p>
+
+            </div>
+
+            <div class="gallery-activity-grid">
+
+                <?php
+                $activities = array(
+                    array(
+                        'title' => 'Baking',
+                        'image' => 'pratical.jpg',
+                        'description' => 'Students learning and creating in the kitchen.'
+                    ),
+                    array(
+                        'title' => 'Sewing & Garment Making',
+                        'image' => 'tailoring.jpg',
+                        'description' => 'Students practising sewing and garment-making skills.'
+                    ),
+                    array(
+                        'title' => 'Computer Skills',
+                        'image' => 'skills.jpg',
+                        'description' => 'Students developing confidence with computers.'
+                    ),
+                    array(
+                        'title' => 'Hotel Management',
+                        'image' => 'hotel.webp',
+                        'description' => 'Students developing hospitality and hotel service skills.'
+                    )
+                );
+
+                foreach ($activities as $activity) :
+                    $image_url = get_theme_file_uri(
+                        '/images/' . $activity['image']
+                    );
+                ?>
+
+                    <figure class="gallery-activity-card">
+
+                        <div class="gallery-activity-photo">
+
+                            <img
+                                src="<?php echo esc_url($image_url); ?>"
+                                alt="<?php echo esc_attr($activity['title']); ?>"
+                                class="gallery-click-image">
+
+                        </div>
+
+                        <figcaption>
+
+                            <h3>
+                                <?php echo esc_html($activity['title']); ?>
+                            </h3>
+
+                            <p>
+                                <?php echo esc_html($activity['description']); ?>
+                            </p>
+
+                        </figcaption>
+
+                    </figure>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <div class="gallery-container">
+
+        <section class="gallery-note">
+
+            <div>
+
+                <p class="section-eyebrow">
+                    SHARE A SCHOOL MOMENT
+                </p>
+
+                <h2>Have photos of students learning?</h2>
+
+                <p>
+                    Contact the school to share photos
+                    for our gallery.
+                </p>
+
+            </div>
+
+            <a class="gallery-button"
+               href="<?php echo esc_url(home_url('/contact-us/')); ?>">
+                Get in touch →
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+<!-- IMAGE LIGHTBOX -->
+<div class="gallery-lightbox" id="galleryLightbox">
+
+    <button class="gallery-lightbox-close"
+            id="galleryClose"
+            aria-label="Close image viewer">
+        &times;
+    </button>
+
+    <img src="" id="galleryLightboxImage" alt="Enlarged school gallery photo">
+
+</div>
+
+<!-- FOOTER -->
+<footer class="stella-gallery-footer">
+
+    <div class="stella-footer-grid">
+
+        <div>
+            <h3>STELLA MARIS COLLEGE NSUUBE</h3>
+
+            <p>
+                Discipline. Knowledge. A brighter future.
+                Success through self reliance.
+            </p>
+        </div>
+
+        <div>
+            <h4>QUICK LINKS</h4>
+
+            <ul>
+                <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+                <li><a href="<?php echo esc_url(home_url('/about-us/')); ?>">About Us</a></li>
+                <li><a href="<?php echo esc_url(home_url('/academics/')); ?>">Academics</a></li>
+                <li><a href="<?php echo esc_url(home_url('/gallery/')); ?>">Gallery</a></li>
+                <li><a href="<?php echo esc_url(home_url('/contact-us/')); ?>">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>CONTACT US</h4>
+
+            <ul>
+                <li>Stella Maris College Nsuube</li>
+                <li>
+                    <a href="mailto:info@stella.ac.ug">
+                        info@stella.ac.ug
+                    </a>
+                </li>
+                <li>Mon - Fri: 7:30am - 5:30pm</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>FOLLOW US</h4>
+
+            <ul>
+                <li>Facebook</li>
+                <li>YouTube</li>
+                <li>TikTok</li>
+            </ul>
+        </div>
+
+    </div>
+
+</footer>
+
+<div class="stella-footer-bottom">
+    <p>
+        &copy; <?php echo esc_html(wp_date('Y')); ?>
+        Stella Maris College Nsuube. Educate a girl child.
+    </p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const images = document.querySelectorAll('.gallery-click-image');
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImage = document.getElementById('galleryLightboxImage');
+    const closeButton = document.getElementById('galleryClose');
+
+    images.forEach(function(image) {
+
+        image.addEventListener('click', function() {
+            lightboxImage.src = this.src;
+            lightboxImage.alt = this.alt;
+            lightbox.classList.add('active');
+        });
+
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxImage.src = '';
+    }
+
+    closeButton.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+
+});
+</script>
+
+<?php get_footer(); ?>
